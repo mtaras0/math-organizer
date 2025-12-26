@@ -15,7 +15,15 @@
   <script>
     // Shim global variables for legacy bundled code (like Penrose/MathJax)
     if (typeof window.require === 'undefined') {
+      var mockPath = {
+        resolve: function() { return Array.prototype.slice.call(arguments).join('/'); },
+        join: function() { return Array.prototype.slice.call(arguments).join('/'); },
+        dirname: function(p) { return p; },
+        basename: function(p) { return p; }
+      };
+
       window.require = function(name) {
+        if (name === 'path') return mockPath;
         console.warn("[Global Shim] Blocked require:", name);
         return {};
       };
