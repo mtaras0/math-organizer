@@ -12,6 +12,20 @@
 
 <body>
   <div id="root"></div>
+  <script>
+    // Shim global require for legacy bundled code (like Penrose/MathJax)
+    if (typeof window.require === 'undefined') {
+      window.require = function(name) {
+        console.warn("[Global Shim] Blocked require:", name);
+        return {};
+      };
+      window.require.resolve = function(name) { return name; };
+    }
+    // Shim process for some legacy libs
+    if (typeof window.process === 'undefined') {
+      window.process = { env: { NODE_ENV: 'production' } };
+    }
+  </script>
 </body>
 
 </html>
