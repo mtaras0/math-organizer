@@ -3,7 +3,7 @@
 
 <head>
   <meta charset="UTF-8" />
-  <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+  <link rel="icon" type="image/svg+xml" href="vite.svg" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>math_organizer</title>
   <script type="module" crossorigin src="/math-organizer/assets/index-CTv9Cb0c.js"></script>
@@ -13,7 +13,7 @@
 <body>
   <div id="root"></div>
   <script>
-    // Shim global require for legacy bundled code (like Penrose/MathJax)
+    // Shim global variables for legacy bundled code (like Penrose/MathJax)
     if (typeof window.require === 'undefined') {
       window.require = function(name) {
         console.warn("[Global Shim] Blocked require:", name);
@@ -21,9 +21,11 @@
       };
       window.require.resolve = function(name) { return name; };
     }
-    // Shim process for some legacy libs
     if (typeof window.process === 'undefined') {
       window.process = { env: { NODE_ENV: 'production' } };
+    }
+    if (typeof window.__dirname === 'undefined') {
+      window.__dirname = '/';
     }
   </script>
 </body>
