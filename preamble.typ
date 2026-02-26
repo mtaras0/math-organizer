@@ -33,3 +33,8 @@
 
 // Example usage with a list
 #set enum(numbering: ru-problem-numbering, full: true)
+
+#show enum.item: it => {
+  show math.equation.where(block: true): eq => math.display(eq.body)
+  it
+}
