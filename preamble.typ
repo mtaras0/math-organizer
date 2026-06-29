@@ -1,12 +1,15 @@
 #set page(
   width: 200mm,
   height: auto,
-  margin: (x: 1em, y: 1em),
+  margin: (x: 2em, y: 2.5em),
   fill: none,
 )
-#set text(lang: "ru", font: "New Computer Modern", size: 16pt)
+#set text(lang: "ru", font: "New Computer Modern", size: 18pt)
+
 #show sym.gt.eq: sym.gt.eq.slant
 #show sym.lt.eq: sym.lt.eq.slant
+#let arctg = math.op("arctg")
+
 #set par(justify: true)
 
 #let ru-problem-numbering(..nums) = {
@@ -31,5 +34,10 @@
   }
 }
 
-// Example usage with a list
-#set enum(numbering: ru-problem-numbering, full: true)
+#set enum(numbering: ru-problem-numbering, full: true, indent: 0em, body-indent: 1.0em)
+
+#show math.equation: math.display
+#import "@preview/itemize:0.2.0" as el
+#show: el.default-enum-list.with(auto-resuming: (true, false, false))
+#set enum(spacing: 1.5em)
+// #show heading.where(level: 1): set block(below: 1.5em, above: 2.5em)
